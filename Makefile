@@ -20,6 +20,6 @@ sqlc:
 	sqlc generate
 
 test:
-	go test -v -coverprofile=coverage.out ./...
+	go test -v ./...
     
 .PHONY: postgres postgresdown createdb dropdb migrateup migratedown sqlc test
