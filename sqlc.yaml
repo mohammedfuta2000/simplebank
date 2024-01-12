@@ -1,0 +1,23 @@
+version: "2"
+cloud:
+  project: "01HKF08XKCJ3F9GNDDNVH6Z1SW"
+sql:
+- schema: "./db/migration"
+  queries: "./db/query/"
+  engine: "postgresql"
+  name: 'db'
+  gen:
+    go: 
+      package: "db"
+      out: "./db/sqlc"
+      emit_json_tags: true
+      emit_prepared_queries: false
+      emit_interface: false
+      emit_exact_table_names: false
+  database:
+    uri: postgresql://root:secret@localhost:5431/simple_bank
+  rules:
+    - sqlc/db-prepare
+# make emit_json_tags true if u need to optimize
+# make emit_prepared_queries true to create interface. might be useful if u need to mock db for higher level testing
+# if emit_exact_table_names is true, acounts will be Accounts struct, if false, itll be Account struct (singular)
